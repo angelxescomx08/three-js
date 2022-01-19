@@ -37,12 +37,33 @@
             let geometry = new THREE.CircleGeometry(getRandomNumberBetween(0.005, 0.02), 32);
             circle.push(new THREE.Mesh(geometry, material));
 
-            let x = randomNumber();
-            let y = randomNumber();
-            velocity.push([x, y]);
-
             circle[i].position.x = getRandomNumberBetween(-7,7);
             circle[i].position.y = getRandomNumberBetween(-7,7);
+
+            let x = 0;
+            let y = 0;
+
+            if(circle[i].position.x>=0&&circle[i].position.y>=0){
+                x = Math.abs(randomNumber());
+                y = Math.abs(randomNumber());
+            }
+
+            if(circle[i].position.x<0&&circle[i].position.y>=0){
+                x = -Math.abs(randomNumber());
+                y = Math.abs(randomNumber());
+            }
+
+            if(circle[i].position.x<0&&circle[i].position.y<0){
+                x = -Math.abs(randomNumber());
+                y = -Math.abs(randomNumber());
+            }
+
+            if(circle[i].position.x>=0&&circle[i].position.y<0){
+                x = Math.abs(randomNumber());
+                y = -Math.abs(randomNumber());
+            }
+
+            velocity.push([x, y]);
 
             scene.add(circle[i]);
         }
