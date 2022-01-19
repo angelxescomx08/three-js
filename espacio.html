@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Espacio</title>
+    <style>
+        body {
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+
+        const renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        camera.position.z = 5;
+
+        //animaciones
+        //const geometry = new THREE.CircleGeometry(.01, 32);
+        const material = new THREE.MeshBasicMaterial({ color: 0xffffff });
+        const circle = [];
+        const velocity = [];
+
+        const num = 1000;
+
+        for (let i = 0; i < num; i++) {
+            let geometry = new THREE.CircleGeometry(getRandomNumberBetween(0.005, 0.02), 32);
+            circle.push(new THREE.Mesh(geometry, material));
+
+            let x = randomNumber();
+            let y = randomNumber();
+            velocity.push([x, y]);
+
+            circle[i].position.x = getRandomNumberBetween(-7,7);
+            circle[i].position.y = getRandomNumberBetween(-7,7);
+
+            scene.add(circle[i]);
+        }
+
+
+        function randomNumber() {
+            return (2 * Math.random() - 1) / 100;
+        }
+
+        function getRandomNumberBetween(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            renderer.render(scene, camera);
+
+            for (i = 0; i < num; i++) {
+                if(circle[i].position.x>-7 && circle[i].position.x<7 && circle[i].position.y>-7 && circle[i].position.y<7){
+                    circle[i].position.x += velocity[i][0];
+                    circle[i].position.y += velocity[i][1];
+                }else{
+                    circle[i].position.x = getRandomNumberBetween(-7,7);
+                    circle[i].position.y = getRandomNumberBetween(-7,7);
+                }         
+            }
+        }
+        animate();
+    </script>
+</body>
+
+</html>

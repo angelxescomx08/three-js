@@ -1,0 +1,22 @@
+{
+  "name": "three-js",
+  "version": "1.0.0",
+  "description": "En three js se necesitan 3 cosas para crear animaciones, la primera es una escena, la segunda es una camara\r y la tercera es un renderer.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/angelxescomx08/three-js.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/angelxescomx08/three-js/issues"
+  },
+  "homepage": "https://github.com/angelxescomx08/three-js#readme",
+  "dependencies": {
+    "tree": "^0.1.3"
+  }
+}
